@@ -1,6 +1,6 @@
 language: minimal
 
-before_script:
+before_install:
   - echo "deb http://deb.debian.org/debian/ bullseye main contrib non-free" | sudo tee -a /etc/apt/sources.list
   - echo "deb-src http://deb.debian.org/debian/ bullseye main contrib non-free" | sudo tee -a /etc/apt/sources.list
   - echo "deb http://deb.debian.org/debian/ buster-backports main" | sudo tee -a /etc/apt/sources.list
@@ -8,10 +8,17 @@ before_script:
   - sudo apt-get -y --allow-unauthenticated install debian-archive-keyring
   - sudo apt-key update
   - sudo apt-get -qq update
-  - sudo apt-get -y install linux-source-5.4
-  - tar --skip-old-files -xaf /usr/src/linux-source-5.4.tar.xz
+
+install:
   - sudo apt-get -y install build-essential fakeroot
   - sudo apt-get -y build-dep linux
+  - sudo apt-get -y install linux-source-5.4
+
+before_script:
+  - tar --skip-old-files -xaf /usr/src/linux-source-5.4.tar.xz
+  - cd linux-source-5.4
+  - make olddefconfig
+  - cd ..
 
 script:
   - ./build.sh
