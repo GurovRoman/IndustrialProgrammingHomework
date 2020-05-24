@@ -3,9 +3,9 @@
 set -e
 
 cd linux-source-5.4
-make bindeb-pkg -j
+make -j 2 bindeb-pkg
 
 cd ../custom_module
-make src -j
+make -j 2 src
 
 cd ..
