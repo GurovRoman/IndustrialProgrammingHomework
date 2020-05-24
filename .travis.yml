@@ -17,7 +17,7 @@ install:
 before_script:
   - tar --skip-old-files -xaf /usr/src/linux-source-5.4.tar.xz
   - cd linux-source-5.4
-  - make olddefconfig
+  - make allnoconfig
   - cd ..
 
 script:

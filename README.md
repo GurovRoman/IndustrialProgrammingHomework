@@ -15,8 +15,14 @@ cd mipt-linux2-modules
 Так как в репозиторий не входит само ядро, а только патч для него, для начала придется скачать ядро Debian и интегрировать в репозиторий
 ```
 apt-get install linux-source-5.4
-tar xaf /usr/src/linux-source-5.4.tar.xz
-git reset --hard
+tar --skip-old-files -xaf /usr/src/linux-source-5.4.tar.xz
+```
+
+Перед сборкой ядро необходимо конфигурировать так, как вам удобно, например:
+```
+cd linux-source-5.4
+make menuconfig
+cd ..
 ```
 
 Теперь можно запускать сборку
