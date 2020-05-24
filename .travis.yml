@@ -9,9 +9,9 @@ before_script:
   - sudo apt-key update
   - sudo apt-get -qq update
   - sudo apt-get -y install linux-source-5.4
+  - tar --skip-old-files -xaf /usr/src/linux-source-5.4.tar.xz
   - sudo apt-get -y install build-essential fakeroot
   - sudo apt-get -y build-dep linux
-  - tar xafk /usr/src/linux-source-5.4.tar.xz
 
 script:
   - ./build.sh
